@@ -151,11 +151,6 @@ export default function ComparePage() {
             <div className="flex flex-col items-center">
               <PokemonCard pokemon={leftData} />
               <div className="mt-4 w-full">
-                <div className="mb-2 flex gap-2 flex-wrap">
-                  {leftData.types.map((t) => (
-                    <img key={t.type.name} src={typeIcons[t.type.name]} alt={t.type.name} className="w-8 h-8" />
-                  ))}
-                </div>
                 <strong>Stats:</strong>
                 <ul className="mt-2">
                   {leftData.stats.map((s) => (
@@ -175,11 +170,6 @@ export default function ComparePage() {
             <div className="flex flex-col items-center">
               <PokemonCard pokemon={rightData} />
               <div className="mt-4 w-full">
-                <div className="mb-2 flex gap-2 flex-wrap">
-                  {rightData.types.map((t) => (
-                    <img key={t.type.name} src={typeIcons[t.type.name]} alt={t.type.name} className="w-8 h-8" />
-                  ))}
-                </div>
                 <strong>Stats:</strong>
                 <ul className="mt-2">
                   {rightData.stats.map((s) => (

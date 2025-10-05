@@ -31,7 +31,6 @@ export default function PokemonCard({ pokemon, compact = false }) {
 
   const outerClass = compact ? "w-48 h-56" : "w-56 h-64"
   const imgClass = compact ? "w-28 h-28" : "w-36 h-36"
-  const iconClass = compact ? "w-5 h-5" : "w-6 h-6"
 
   return (
     <div
@@ -43,10 +42,10 @@ export default function PokemonCard({ pokemon, compact = false }) {
           <div className="mirror-content flex flex-col items-center">
             <img src={image} alt={pokemon.name} className={`${imgClass} object-contain`} />
             <h3 className="capitalize font-bold text-lg mt-2">{pokemon.name}</h3>
-            <div className="mb-4 flex gap-3 flex-wrap">
+            <div className="mb-4 flex gap-3 justify-center flex-wrap mt-4">
               {pokemon.types.map((t) => (
-                <div key={t.type.name} className="flex items-center gap-2">
-                  <img src={typeIcons[t.type.name]} alt={t.type.name} className="w-15 h-3" />
+                <div key={t.type.name} className="rounded-full overflow-hidden">
+                  <img src={typeIcons[t.type.name]} alt={t.type.name} className="w-15 h-4" />
                 </div>
               ))}
             </div>

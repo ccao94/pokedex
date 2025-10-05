@@ -100,18 +100,10 @@ export default function PokemonDetails() {
 
           <p className="mb-4 text-lg text-[#e5e7eb] italic">{description}</p>
 
-          {}
           <div className="mb-4 flex gap-3 flex-wrap">
             {pokemon.types.map((t) => (
-              <div
-                key={t.type.name}
-                className="flex items-center px-3 py-1 rounded-full bg-gray-700/50 text-sm shadow"
-              >
-                <img
-                  src={typeIcons[t.type.name]}
-                  alt={t.type.name}
-                  className="w-10 h-10"
-                />
+              <div key={t.type.name} className="flex items-center px-3 py-1 rounded-full bg-gray-700/50 text-sm shadow">
+                <img src={typeIcons[t.type.name]} alt={t.type.name} className="w-15 h-4" />
               </div>
             ))}
           </div>
