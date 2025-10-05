@@ -6,14 +6,26 @@ async function fetchJson(url) {
   return res.json();
 }
 
-export async function searchPokemon(name) {
-  try {
-    const data = await fetchJson(`${BASE_URL}${name.toLowerCase()}`);
-    return data;
-  } catch {
-    return { error: "Pokemon not found" };
+let cache = null;
+
+export async function searchPokemon(query) {
+  const searchTerm = query.toLowerCase().trim();
+
+  if (!cache) {
+    const data = await fetchJson(`${BASE_URL}?limit=1000`);
+    cache = data?.results || [];
   }
+
+  const matches = cache.filter(p => p.name.includes(searchTerm));
+  if (matches.length === 0) return { error: "Pokemon not found" };
+
+  const results = await Promise.all(
+    matches.map(m => fetchJson(`${BASE_URL}${m.name}`))
+  );
+
+  return results.filter(r => r !== null);
 }
+
 
 export async function getPokemonById(id) {
   try {
