@@ -128,12 +128,12 @@ export default function CollectionPage() {
 
       {loading && <div className="text-center text-white">Loading...</div>}
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <div className="flex flex-wrap justify-between gap-6">
         {filtered.map((p) => (
           <PokemonCard key={p.name} pokemon={p} compact />
         ))}
       </div>
-
+      
       <div ref={loaderRef} className="text-center text-gray-400 mt-6">
         Loading more Pokémon...
       </div>
