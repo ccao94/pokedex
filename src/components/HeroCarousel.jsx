@@ -62,7 +62,6 @@ export default function HeroCarousel() {
         const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=2000")
         const data = await res.json()
         const allPokemons = data.results
-
         const shuffled = allPokemons.sort(() => Math.random() - 0.5)
         const random20 = shuffled.slice(0, 20)
         setPokemons(random20)

@@ -1,6 +1,27 @@
 import React, { useEffect, useState, useMemo } from "react"
 import PokemonCard from "../components/PokemonCard"
 
+const typeIcons = {
+  normal: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/1.png",
+  fighting: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/2.png",
+  flying: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/3.png",
+  poison: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/4.png",
+  ground: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/5.png",
+  rock: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/6.png",
+  bug: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/7.png",
+  ghost: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/8.png",
+  steel: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/9.png",
+  fire: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/10.png",
+  water: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/11.png",
+  grass: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/12.png",
+  electric: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/13.png",
+  psychic: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/14.png",
+  ice: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/15.png",
+  dragon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/16.png",
+  dark: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/17.png",
+  fairy: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/18.png",
+}
+
 export default function ComparePage() {
   const [list, setList] = useState([])
   const [queryLeft, setQueryLeft] = useState("")
@@ -128,13 +149,15 @@ export default function ComparePage() {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow flex flex-col items-center">
           {leftData ? (
             <div className="flex flex-col items-center">
-              <PokemonCard pokemon={leftData} mirrorHover />
+              <PokemonCard pokemon={leftData} />
               <div className="mt-4 w-full">
-                <strong>Types:</strong> {leftData.types.map((t) => t.type.name).join(", ")}
-              </div>
-              <div className="mt-2 w-full">
+                <div className="mb-2 flex gap-2 flex-wrap">
+                  {leftData.types.map((t) => (
+                    <img key={t.type.name} src={typeIcons[t.type.name]} alt={t.type.name} className="w-8 h-8" />
+                  ))}
+                </div>
                 <strong>Stats:</strong>
-                <ul>
+                <ul className="mt-2">
                   {leftData.stats.map((s) => (
                     <li key={s.stat.name}>
                       {s.stat.name}: {s.base_stat}
@@ -150,13 +173,15 @@ export default function ComparePage() {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow flex flex-col items-center">
           {rightData ? (
             <div className="flex flex-col items-center">
-              <PokemonCard pokemon={rightData} mirrorHover />
+              <PokemonCard pokemon={rightData} />
               <div className="mt-4 w-full">
-                <strong>Types:</strong> {rightData.types.map((t) => t.type.name).join(", ")}
-              </div>
-              <div className="mt-2 w-full">
+                <div className="mb-2 flex gap-2 flex-wrap">
+                  {rightData.types.map((t) => (
+                    <img key={t.type.name} src={typeIcons[t.type.name]} alt={t.type.name} className="w-8 h-8" />
+                  ))}
+                </div>
                 <strong>Stats:</strong>
-                <ul>
+                <ul className="mt-2">
                   {rightData.stats.map((s) => (
                     <li key={s.stat.name}>
                       {s.stat.name}: {s.base_stat}
