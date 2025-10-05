@@ -43,10 +43,10 @@ export default function PokemonCard({ pokemon, compact = false }) {
           <div className="mirror-content flex flex-col items-center">
             <img src={image} alt={pokemon.name} className={`${imgClass} object-contain`} />
             <h3 className="capitalize font-bold text-lg mt-2">{pokemon.name}</h3>
-            <div className="flex gap-2 mt-2 flex-wrap justify-center">
-              {pokemon.types?.map((t) => (
-                <div key={t.type.name} className="flex items-center px-2 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">
-                  <img src={typeIcons[t.type.name]} alt={t.type.name} className={iconClass} />
+            <div className="mb-4 flex gap-3 flex-wrap">
+              {pokemon.types.map((t) => (
+                <div key={t.type.name} className="flex items-center gap-2">
+                  <img src={typeIcons[t.type.name]} alt={t.type.name} className="w-15 h-3" />
                 </div>
               ))}
             </div>
