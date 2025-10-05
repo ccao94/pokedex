@@ -66,7 +66,7 @@ export default function PokemonDetails() {
   }, [name])
 
   if (status === "loading") return <Loading />
-  if (status === "error") return <div className="p-4">Pokémon not found.</div>
+  if (status === "error") return <div className="p-4 text-[#e5e7eb]">Pokémon not found.</div>
 
   const description =
     species?.flavor_text_entries
@@ -76,31 +76,58 @@ export default function PokemonDetails() {
   const bgColor = colorMap[species?.color?.name] || "bg-gray-200"
 
   return (
-    <div className="p-6">
-      <button onClick={() => nav(-1)} className="px-3 py-1 border rounded-lg mb-6 hover:bg-gray-200 dark:hover:bg-gray-700">
+    <div className="p-6 text-[#e5e7eb]">
+      <button
+        onClick={() => nav(-1)}
+        className="px-3 py-1 border border-[#e5e7eb] rounded-lg mb-6 hover:bg-[#ffcb05]/20 text-[#ffcb05] transition"
+      >
         ← Back
       </button>
+
       <div className="grid md:grid-cols-2 gap-10 items-center">
-        <div className={`rounded-full ${bgColor} flex items-center justify-center w-96 h-96 mx-auto`}>
-          <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} className="w-72 h-72 object-contain" />
+        <div className={`rounded-full ${bgColor} flex items-center justify-center w-96 h-96 mx-auto shadow-lg`}>
+          <img
+            src={pokemon.sprites.other["official-artwork"].front_default}
+            alt={pokemon.name}
+            className="w-72 h-72 object-contain"
+          />
         </div>
+
         <div>
-          <h2 className="text-4xl font-bold capitalize mb-4">
-            {pokemon.name} <span className="text-gray-400">#{pokemon.id}</span>
+          <h2 className="text-4xl font-bold capitalize mb-4 text-[#ffcb05] drop-shadow">
+            {pokemon.name} <span className="text-[#cbd5e1]">#{pokemon.id}</span>
           </h2>
-          <p className="mb-4 text-lg">{description}</p>
+
+          <p className="mb-4 text-lg text-[#e5e7eb] italic">{description}</p>
+
           <div className="mb-4 flex gap-3 flex-wrap">
             {pokemon.types.map((t) => (
-              <div key={t.type.name} className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">
+              <div
+                key={t.type.name}
+                className="flex items-center gap-2 px-3 py-1 rounded-full bg-gray-700/50 text-sm shadow"
+              >
                 <img src={typeIcons[t.type.name]} alt={t.type.name} className="w-5 h-5" />
-                <span className="capitalize">{t.type.name}</span>
+                <span className="capitalize text-[#e5e7eb]">{t.type.name}</span>
               </div>
             ))}
           </div>
-          <p className="mb-2"><strong>Height:</strong> {pokemon.height / 10} m</p>
-          <p className="mb-2"><strong>Weight:</strong> {pokemon.weight / 10} kg</p>
-          <p className="mb-2"><strong>Abilities:</strong> {pokemon.abilities.map((a) => a.ability.name).join(", ")}</p>
-          <p><strong>Main Moves:</strong> {pokemon.moves.slice(0, 6).map((m) => m.move.name).join(", ")}</p>
+
+          <div className="space-y-2 mt-6">
+            <p>
+              <strong className="text-[#60a5fa]">Height:</strong> {pokemon.height / 10} m
+            </p>
+            <p>
+              <strong className="text-[#60a5fa]">Weight:</strong> {pokemon.weight / 10} kg
+            </p>
+            <p>
+              <strong className="text-[#60a5fa]">Abilities:</strong>{" "}
+              {pokemon.abilities.map((a) => a.ability.name).join(", ")}
+            </p>
+            <p>
+              <strong className="text-[#f87171]">Main Moves:</strong>{" "}
+              {pokemon.moves.slice(0, 6).map((m) => m.move.name).join(", ")}
+            </p>
+          </div>
         </div>
       </div>
     </div>

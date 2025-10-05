@@ -40,7 +40,6 @@ function CardLazy({ name, url }) {
   return (
     <div ref={ref} className="flex-shrink-0 w-56">
       {detail ? (
-        // ✅ Le navigate est maintenant uniquement géré par PokemonCard
         <PokemonCard pokemon={detail} />
       ) : (
         <div className="w-56 h-64 rounded-2xl bg-gray-200 flex items-center justify-center">
@@ -64,7 +63,6 @@ export default function HeroCarousel() {
         const data = await res.json()
         const allPokemons = data.results
 
-        // On mélange et on choisit 20 pokémon aléatoires
         const shuffled = allPokemons.sort(() => Math.random() - 0.5)
         const random20 = shuffled.slice(0, 20)
         setPokemons(random20)
